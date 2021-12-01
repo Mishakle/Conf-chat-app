@@ -1,0 +1,35 @@
+{
+    "name": "chat-api",
+    "version": "1.0.0",
+    "author": "Mykhailo Konevshchynskyi",
+    "description": "back-end for chat app",
+    "license": "ISC",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "start": "nodemon index.js"
+    },
+    "keywords": [],
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "log4js": "^6.3.0",
+        "passport": "^0.5.0",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.3.0",
+        "eslint-config-airbnb": "^19.0.1",
+        "eslint-config-node": "^4.1.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jest": "^27.4.2",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.0"
+    }
+}
