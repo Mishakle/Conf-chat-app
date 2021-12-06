@@ -2,6 +2,10 @@ const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: JWTstrategy } = require('passport-jwt');
 const { ExtractJwt: ExtractJWT } = require('passport-jwt');
+<<<<<<< HEAD
+=======
+const userRepository = require('../db/user_repo');
+>>>>>>> b9b8d0c794449d5a18566d5aa17bb99f2fc84f7f
 
 passport.use(
     'signup',
