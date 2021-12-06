@@ -12,10 +12,8 @@ class UserRepository {
         );
     }
 
-    async getUser(userId) {
-        await db.query(`SELECT ${this._name}, ${this._profileImage} FROM users WHERE id = $1`, [
-            userId,
-        ]);
+    async getUserByName(name) {
+        await db.query(`SELECT * FROM users WHERE ${this._name} = $1`, [name]);
     }
 
     // change IDs to users' names later

@@ -2,7 +2,9 @@ const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: JWTstrategy } = require('passport-jwt');
 const { ExtractJwt: ExtractJWT } = require('passport-jwt');
+
 const userRepository = require('../db/user_repo');
+const { hashPassword, isValidPassword } = require('../utils/bcrypt');
 
 passport.use(
     'signup',
@@ -12,10 +14,10 @@ passport.use(
             passwordField: 'password',
             passReqToCallback: true,
         },
-        async (req, email, password, done) => {
+        async (req, name, password, done) => {
             try {
-                const username = req.body.username;
-                const user = await User.create({ email, password, username });
+                const hashedPassword = hashPassword(password);
+                const user = await userRepository.createNewUser(name, hashPassword);
 
                 return done(null, user);
             } catch (error) {
@@ -32,15 +34,16 @@ passport.use(
             usernameField: 'name',
             passwordField: 'password',
         },
-        async (email, password, done) => {
+        async (name, password, done) => {
             try {
-                const user = await User.findOne({ email });
+                const user = await userRepository.getUserByName(name);
 
                 if (!user) {
                     return done({ statusCode: 401 }, null);
                 }
 
-                const validate = await user.isValidPassword(password);
+                // make db request?
+                const validate = await isValidPassword();
 
                 if (!validate) {
                     return done({ statusCode: 401 }, null);
