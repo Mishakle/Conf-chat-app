@@ -26,7 +26,7 @@ class UserRepository {
     async updateUser(userId, name, profileImage) {
         await db.query(
             `UPDATE users set ${this._name} = $1, ${this._profileImage} = $2 WHERE id = $3 RETURNING *`,
-            [userId, name, profileImage],
+            [name, profileImage, userId],
         );
     }
 
